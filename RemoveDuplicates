@@ -1,0 +1,44 @@
+   public static int removeDuplicates(int[] nums) {
+// array is non decrease order that's mean when we move from one number to another we will not meet these element again
+// the edge cases if we have array with the one value which is the not equal the value we search for
+//edge cases
+// [] ,8--->
+// [2],2-->
+//[1],2--->
+        int writer=0;
+        int reader=0;
+
+
+    if(nums.length<2){
+
+        return nums.length;
+
+    }
+
+
+        while(reader<nums.length)
+        {
+            // in this case if the reader and writer on the same value reader will move step
+
+            if(nums[reader]==nums[writer])
+            {
+                reader++;
+
+            }
+
+            //edge case if the array has one value not equals the value we need writer will move one step so that the result will be right answer
+            else{
+
+                nums[++writer]=nums[reader];
+
+                reader++;
+
+            }
+
+        }
+
+
+        return writer+1;
+
+
+    }
