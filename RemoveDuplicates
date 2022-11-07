@@ -1,44 +1,61 @@
-   public static int removeDuplicates(int[] nums) {
-// array is non decrease order that's mean when we move from one number to another we will not meet these element again
-// the edge cases if we have array with the one value which is the not equal the value we search for
-//edge cases
-// [] ,8--->
-// [2],2-->
-//[1],2--->
-        int writer=0;
-        int reader=0;
+ public class Main {
+    public static void main(String[] args) {
+      int[]arr={1,2,2,3,3,4,4,5,11};
 
+        System.out.println(sizeAfterremoveDuplicates(arr));
+        int lastIndex=removeDuplicates(arr);
+        System.out.println(lastIndex);
+        for(int i:arr){
 
-    if(nums.length<2){
-
-        return nums.length;
-
-    }
-
-
-        while(reader<nums.length)
-        {
-            // in this case if the reader and writer on the same value reader will move step
-
-            if(nums[reader]==nums[writer])
-            {
-                reader++;
-
-            }
-
-            //edge case if the array has one value not equals the value we need writer will move one step so that the result will be right answer
-            else{
-
-                nums[++writer]=nums[reader];
-
-                reader++;
-
-            }
+            System.out.println(i);
 
         }
 
 
-        return writer+1;
+    }
+    public static int sizeAfterremoveDuplicates(int[] nums) {
+        int sizeOfarray=nums.length;
 
+        // iterate on array if the prev element equals the curr decrease size of array
+
+        int i=0;
+        int j=1;
+        while(j<nums.length)
+        {
+
+        if(nums[i]==nums[j]){
+            sizeOfarray--;
+
+        }
+            j++;
+            i++;
+
+
+
+        }
+
+
+
+        return sizeOfarray;
 
     }
+    public static int removeDuplicates(int[] nums) {
+        // we will use two pointer start from the second element
+        //check if the nonDuplicate element not equal the current element
+        // swap it with array element with current element
+        int nonDuplicate=1;
+       for (int i=1;i<nums.length;i++){
+
+    if(nums[nonDuplicate-1]!=nums[i]){
+
+        nums[nonDuplicate]=nums[i];
+        nonDuplicate++;
+    }
+
+       }
+
+    return nonDuplicate;
+
+    }
+
+}
