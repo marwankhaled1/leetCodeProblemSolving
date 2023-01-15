@@ -1,0 +1,29 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+
+        ArrayList<Integer>resultlist=new ArrayList<>();
+        //create hashset add first array in it
+        HashSet<Integer>firstArray=new HashSet<>();
+        for (int i=0;i<nums1.length;i++){
+            firstArray.add(nums1[i]);
+        }
+        // loop on the second one if element exist add to result and remove from set
+        for (int i=0;i<nums2.length;i++){
+
+            if ( firstArray.contains(nums2[i])){
+                resultlist.add(nums2[i]);
+                firstArray.remove(nums2[i]);
+            }
+
+        }
+        //convert the arraylist to array
+        int []result=new int[resultlist.size()];
+        for (int i=0;i<resultlist.size();i++){
+            
+            result[i]=resultlist.get(i);
+            
+        }
+        return result;
+        
+    }
+}
