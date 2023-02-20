@@ -1,0 +1,58 @@
+#Link:https://leetcode.com/problems/longest-substring-without-repeating-characters/
+"""
+Brute Force
+time Complexity o(n^2), Space Complexity o(n)
+1-max=0
+2-loop outer
+        count=0 , dict-> empty 
+3-loop inner to add to dict or to increase counter
+  after finish loop compare count with max and set max with the largest value 
+time complexity--> o(n^2) and space o(n) 
+"""
+def BruteForcelengthOfLongestSubstring(s: str) -> int:
+     maxDistance=0
+     for outerCounter in range(0,len(s)):
+        count=0 
+        distinct ={}
+        for innerCounter in range(outerCounter,len(s)):
+            if(distinct.get(s[innerCounter])is None):
+                distinct[s[innerCounter]]=innerCounter
+                count=count+1
+            else:
+                break;
+        maxDistance=max(maxDistance,count)
+     return maxDistance 
+
+
+"""
+optimal
+time Complexity o(n), Space Complexity o(n)
+res=0,create set to save seen values 
+two pointer first is left and second is the right 
+loop 
+  if not exist in set 
+     set.add(str[r])
+     res=max(res,r-l+1) 
+  else:
+  set.remove(s[l])
+  l=l+1
+"""
+
+
+def lengthOfLongestSubstring(s: str) -> int:
+    seen=set()
+    res=0
+    l=0
+    for r in range(len(s)):
+        while s[r] in seen:
+            seen.remove(s[l])
+            l=l+1
+        seen.add(s[r])
+        res=max(res,r-l+1)
+    return res
+
+
+
+
+
+print(BruteForcelengthOfLongestSubstring('abcbab'))
