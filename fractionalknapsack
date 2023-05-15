@@ -1,0 +1,30 @@
+
+"""
+weights=[2,3,5,7,1,4,1]
+profit=[10,5,15,7,6,18,3]
+
+"""
+
+
+class Solution:
+   def fracknapsack(self, weights, values, capacity):
+      restofCapacity=capacity
+      maxProfit=0
+      items=zip(weights,values)
+      sorteditems=sorted(items,key=lambda x:x[1]/x[0],reverse=True)
+    
+
+      for weight,value in sorteditems:
+         if restofCapacity==0:
+            break
+         else:
+            if weight<=restofCapacity:
+               maxProfit+=value
+            else:
+               maxProfit+= (restofCapacity/weight)*value
+    
+      return maxProfit
+
+
+s=Solution()
+print(s.fracknapsack([6,7,3],[110,120,2],10))
